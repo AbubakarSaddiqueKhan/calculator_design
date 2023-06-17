@@ -10,6 +10,10 @@ class LightBlueCalculatorDesign extends StatefulWidget {
 }
 
 class _LightBlueCalculatorDesignState extends State<LightBlueCalculatorDesign> {
+  double inputDigit = 0.0;
+  double totalResult = 0.0;
+  String operator = "+";
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.sizeOf(context);
@@ -33,7 +37,7 @@ class _LightBlueCalculatorDesignState extends State<LightBlueCalculatorDesign> {
             height: clientHeight * 0.05,
             padding: EdgeInsets.only(right: clientHeight * 0.02),
             child: Text(
-              "20 x 2",
+              "$inputDigit",
               textDirection: TextDirection.ltr,
               textAlign: TextAlign.right,
               style: GoogleFonts.varelaRound(
@@ -47,7 +51,7 @@ class _LightBlueCalculatorDesignState extends State<LightBlueCalculatorDesign> {
             height: clientHeight * 0.08,
             padding: EdgeInsets.only(right: clientHeight * 0.02),
             child: Text(
-              "500",
+              "$totalResult",
               textDirection: TextDirection.ltr,
               textAlign: TextAlign.right,
               style: GoogleFonts.varelaRound(
@@ -74,113 +78,145 @@ class _LightBlueCalculatorDesignState extends State<LightBlueCalculatorDesign> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "AC",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "AC",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            inputDigit = inputDigit * 0;
+                          });
+                        },
                       ),
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "+/-",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "%",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            operator = "%";
+                            totalResult = inputDigit % 1;
+                            inputDigit = inputDigit * 0;
+                          });
+                        },
                       ),
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "%",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "/",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            operator = "/";
+                            totalResult = inputDigit / 1;
+                            inputDigit = inputDigit * 0;
+                          });
+                        },
                       ),
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "/",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "<--",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            (inputDigit = (inputDigit.toInt() / 10));
+                          });
+                        },
                       )
                     ],
                   ),
@@ -192,113 +228,143 @@ class _LightBlueCalculatorDesignState extends State<LightBlueCalculatorDesign> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "7",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "7",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            inputDigit = inputDigit * 10 + 7;
+                          });
+                        },
                       ),
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "8",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "8",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            inputDigit = inputDigit * 10 + 8;
+                          });
+                        },
                       ),
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "9",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "9",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            inputDigit = inputDigit * 10 + 9;
+                          });
+                        },
                       ),
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "x",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "x",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            operator = "*";
+                            totalResult = inputDigit * 1;
+                            inputDigit = inputDigit * 0;
+                          });
+                        },
                       )
                     ],
                   ),
@@ -310,113 +376,143 @@ class _LightBlueCalculatorDesignState extends State<LightBlueCalculatorDesign> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "4",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "4",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            inputDigit = inputDigit * 10 + 4;
+                          });
+                        },
                       ),
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "5",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "5",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            inputDigit = inputDigit * 10 + 5;
+                          });
+                        },
                       ),
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "6",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "6",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            inputDigit = inputDigit * 10 + 6;
+                          });
+                        },
                       ),
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "-",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "-",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            operator = "-";
+                            totalResult = inputDigit - 0;
+                            inputDigit = inputDigit * 0;
+                          });
+                        },
                       )
                     ],
                   ),
@@ -428,113 +524,143 @@ class _LightBlueCalculatorDesignState extends State<LightBlueCalculatorDesign> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "1",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "1",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            inputDigit = inputDigit * 10 + 1;
+                          });
+                        },
                       ),
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "2",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "2",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            inputDigit = inputDigit * 10 + 2;
+                          });
+                        },
                       ),
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "3",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "3",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            inputDigit = inputDigit * 10 + 3;
+                          });
+                        },
                       ),
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "+",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "+",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            operator = "+";
+                            totalResult = inputDigit + 0;
+                            inputDigit = inputDigit * 0;
+                          });
+                        },
                       )
                     ],
                   ),
@@ -546,32 +672,39 @@ class _LightBlueCalculatorDesignState extends State<LightBlueCalculatorDesign> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        width: screenWidth * 0.45,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.45,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "0",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "0",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            inputDigit = inputDigit * 10 + 0;
+                          });
+                        },
                       ),
                       Container(
                         width: screenWidth * 0.2,
@@ -600,32 +733,49 @@ class _LightBlueCalculatorDesignState extends State<LightBlueCalculatorDesign> {
                           ),
                         ),
                       ),
-                      Container(
-                        width: screenWidth * 0.2,
-                        height: clientHeight * 0.1,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 240, 251, 254),
-                            borderRadius: BorderRadius.circular(360),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 8,
-                                color: Colors.white.withOpacity(0.5),
-                                offset: Offset(-5, -5),
-                              ),
-                              BoxShadow(
+                      InkWell(
+                        child: Container(
+                          width: screenWidth * 0.2,
+                          height: clientHeight * 0.1,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 251, 254),
+                              borderRadius: BorderRadius.circular(360),
+                              boxShadow: [
+                                BoxShadow(
                                   blurRadius: 8,
-                                  color: Colors.black.withOpacity(0.3),
-                                  offset: Offset(4, 4))
-                            ]),
-                        child: Text(
-                          "=",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.varelaRound(
-                            color: Colors.black87,
-                            fontSize: clientHeight * 0.04,
+                                  color: Colors.white.withOpacity(0.5),
+                                  offset: Offset(-5, -5),
+                                ),
+                                BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Text(
+                            "=",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.varelaRound(
+                              color: Colors.black87,
+                              fontSize: clientHeight * 0.04,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            if (operator == "+") {
+                              totalResult = totalResult + inputDigit;
+                            } else if (operator == "-") {
+                              totalResult = totalResult - inputDigit;
+                            } else if (operator == "%") {
+                              totalResult = totalResult % inputDigit;
+                            } else if (operator == "/") {
+                              totalResult = totalResult / inputDigit;
+                            } else if (operator == "*") {
+                              totalResult = totalResult * inputDigit;
+                            }
+                          });
+                        },
                       )
                     ],
                   ),
